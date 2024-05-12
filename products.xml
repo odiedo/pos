@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product>
+        <name>Tecno Camon 18</name>
+        <price>19000</price>
+        <available>3</available>
+    </product>
+    <product>
+        <name>Samsung A13</name>
+        <price>23500</price>
+        <available>5</available>
+    </product>
+    <product>
+        <name>Oppo</name>
+        <price>13000</price>
+        <available>2</available>
+    </product>
+    <product>
+        <name>Huawei Y7</name>
+        <price>13000</price>
+        <available>4</available>
+    </product>
+    <product>
+        <name>Random</name>
+        <price>200</price>
+        <available>200</available>
+    </product>
+</products>
