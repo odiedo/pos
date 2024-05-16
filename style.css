@@ -98,11 +98,47 @@
 #products_display .col .card-text-price {
     font-size: 12px;
 }
-
+#checkout-btn {
+    background: #004;
+    border: 1px solid rgb(245, 221, 6);
+    color: rgb(245, 221, 6);
+    font-weight: 900;
+    outline: none;
+}
+#checkout-btn:hover {
+    background: rgb(245, 221, 6);
+    border: 1px solid #004;
+    color: #004;
+    font-weight: 900;
+    outline: none;
+}
+#clear-cart {
+    background: #004;
+    border: 1px solid red;
+    color:red;
+    font-weight: 900;
+    outline: none;
+}
+#clear-cart:hover {
+    background: red;
+    border: 1px solid #004;
+    color: #004;
+    font-weight: 900;
+    outline: none;
+}
 #products_display .card button {
     font-size: 10px;
     background: #004;
     border: 1px solid rgb(245, 221, 6);
     color: rgb(245, 221, 6);
     font-weight: 900;
+    outline: none;
+}
+
+#products_display .card button:hover {
+    background: rgb(245, 221, 6);
+    border: 1px solid #004;
+    color: #004;
+    font-weight: 900;
+    outline: none;
 }

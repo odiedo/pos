@@ -29,13 +29,13 @@ $(document).ready(function(){
             var subtotal = item.price * item.quantity;
             total += subtotal;
             cartList.append(`
-                <li class="list-group-item">
-                    ${item.name} - Kshs. ${item.price} x ${item.quantity}
+                <li class="list-group-item" style="font-weight: 400">
+                    <span style="font-weight: 900">${item.name} - Kshs. ${item.price} x ${item.quantity}</span>
                     <br>
                     <button class="btn btn-sm btn-outline-secondary quantity-btn" data-index="${index}" data-type="decrease"><i class="fas fa-minus"></i></button>
                     <button class="btn btn-sm btn-outline-secondary quantity-btn" data-index="${index}" data-type="increase"><i class="fas fa-plus"></i></button>
                     = Kshs. ${subtotal}
-                    <span class="remove-item-btn text-danger" data-index="${index}">Remove</span>
+                    <span class="remove-item-btn text-danger" style="cursor:pointer" data-index="${index}">Remove</span>
                 </li>
             `);
         });
@@ -60,7 +60,12 @@ $(document).ready(function(){
             var index = $(this).data('index');
             var type = $(this).data('type');
             if (type === 'increase') {
-                cart[index].quantity++;
+                var available = Number($('#products_display .add-to-cart[data-name="' + cart[index].name + '"]').data('available'));
+                if (cart[index].quantity < available) {
+                    cart[index].quantity++;
+                } else {
+                    displayErrorAlert('Sorry, the maximum available quantity for this item has been reached.');
+                }
             } else if (type === 'decrease') {
                 if (cart[index].quantity > 1) {
                     cart[index].quantity--;
@@ -72,6 +77,7 @@ $(document).ready(function(){
             displayCart();
         });
     }
+
 
     // Add to cart button click event using event delegation
     $('#products_display').on('click', '.add-to-cart', function(){
@@ -103,7 +109,7 @@ $(document).ready(function(){
     // Display success alert
     function displaySuccessAlert() {
         $('.alert').remove();
-        $('body').append('<div class="alert alert-success alert-dismissible fade show position-fixed" role="alert" style="top: 20px; right: 20px;">Product added to cart successfully!</div>');
+        $('body').append('<div class="alert alert-success alert-dismissible fade show position-fixed" role="alert" style="top: 20px; right: 20px; z-index: 1000;">Product added to cart successfully!</div>');
         setTimeout(function(){
             $('.alert').alert('close');
         }, 2000);
@@ -125,43 +131,6 @@ $(document).ready(function(){
         displayCart();
     });
 
-    // Handle checkout button click
-    $('#checkout-btn').click(function(){
-        $('#payment-modal').modal('show');
-        $('#customer-number-section').hide();
-        $('#initiate-payment-section').hide();
-        $('#receipt-section').hide();
-
-        $('input[name="paymentMethod"]').change(function() {
-            var paymentMethod = $(this).val();
-            if (paymentMethod === 'cash') {
-                $('#customer-number-section').show();
-                $('#initiate-payment-section').hide();
-            } else if (paymentMethod === 'mpesa') {
-                $('#customer-number-section').hide();
-                $('#initiate-payment-section').show();
-            }
-        });
-    });
-
-    $('#printReceiptBtn').click(function() {
-        window.print();
-    });
-
-    // AJAX live search function
-    $("#search").on("keyup", function() {
-        var query = $(this).val();
-        $.ajax({
-            url: 'search.php',
-            type: 'GET',
-            data: {q: query},
-            success: function(data) {
-                $("#results").html(data);
-                // Reattach event handlers to new elements
-                attachCartHandlers();
-            }
-        });
-    });
 
     // Initial display of cart
     displayCart();
