@@ -1,0 +1,108 @@
+/* Top area section */
+#cont_body {
+    width: 95.5rem; 
+    height: 100vh; 
+    background: #0001; 
+    overflow-x: scroll;
+}
+#cont_body .top-area {
+    height: 50vh;
+    width: 100wh;
+    margin-top: 0%;
+    padding-left: 0;
+    padding-right: 0;
+    background: url('assets/img/bg/bg.jpg');
+    object-fit: contain;
+}
+#cont_body .top-area .top-area-one {
+    background: #0009;
+    height: 50vh;
+    width: 100wh;
+    margin: 0;
+    padding-top: 15vh;
+}
+#cont_body .title-top-area-0 {
+    height: 30vh;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#cont_body .top-area .title-top-area {
+    width: 90%;
+    margin: auto;
+    line-height: 7px;
+}
+#cont_body .top-area span {
+    font-weight: 900;
+    color:rgb(245, 221, 6);
+    font-size: 18px;
+    margin-top: 20px;    
+}
+#cont_body .top-area h2 {
+    color: #fff;
+    font-weight: 600;
+    font-family: cursive;
+    text-shadow: 0 0 10px rgb(245, 221, 6);
+    font-size: 36px;
+}
+#cont_body .top-area p {
+    width: 100%;
+    background-color: #0049;
+    border: 1px solid rgb(245, 221, 6);
+    border-radius: 5px;
+}
+#cont_body .top-area input[type='text'] {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-weight: 900;
+    color: rgb(245, 221, 6);    
+}
+#cont_body .top-area input[type='text']::placeholder {
+    color: rgb(245, 221, 6);
+}
+#cont_body .top-area p i {
+    background: transparent;
+    border: none;
+    color: rgb(245, 221, 6);    
+    font-weight: 900;
+}
+/* search results */
+#livesearch {
+    background: #0049;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* product display */
+/* #products_display {
+    width: 100wh;
+    padding: 0%;
+    margin: 0%;
+    line-height: 12px;
+    text-align: center;
+} */
+#products_display .col .card {
+    width: 100%;
+    background-color: ;
+}
+
+#products_display .col .card-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+#products_display .col .card-text {
+    font-size: 12px;
+}
+#products_display .col .card-text-price {
+    font-size: 12px;
+}
+
+#products_display .card button {
+    font-size: 10px;
+    background: #004;
+    border: 1px solid rgb(245, 221, 6);
+    color: rgb(245, 221, 6);
+    font-weight: 900;
+}

@@ -1,33 +1,32 @@
 <?php
+include 'include/conn.php';
+
 $query = $_GET['q'];
 
 if (!empty($query)) {
-    $xml = simplexml_load_file('products.xml');
-
-    $hint = "";
-    foreach ($xml->product as $product) {
-        $name = $product->name;
-        $price = $product->price;
-        $description = $product->description;
-
-        // Check if the product name contains the query
-        if (stripos($name, $query) !== false) {
-            $hint .= "<div>";
-            $hint .= "<h2>$name</h2>";
-            $hint .= "<p><strong>Price:</strong> $price</p>";
-            $hint .= "<p><strong>Description:</strong> $description</p>";
-            // Add button to add product to cart
-            $hint .= "<button class='add-to-cart' data-name='$name' data-price='$price'>Add to Cart</button>";
-            $hint .= "</div>";
+    // SQL query to search for products
+    $sql = "SELECT * FROM products WHERE name LIKE '%$query%'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $response = "";
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $name = $row["name"];
+            $price = $row["price"];
+            $available = $row["available"];
+            $description = "Description not available";
+            
+            $response .= "<div class='pl-2 pr-2 d-flex justify-content-between search-results'>";
+            $response .= "<h6>$name</h6>";
+            $response .= "$price";
+            $response .= "</div>";
         }
-    }
-
-    if ($hint == "") {
-        $response = "No products found.";
     } else {
-        $response = $hint;
+        $response = "No products found.";
     }
 
     echo $response;
 }
+
+$conn->close();
 ?>

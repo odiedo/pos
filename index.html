@@ -11,9 +11,9 @@
     <link href="assets/dist/css/bootstrap.css" rel="stylesheet">
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 
-
-    <link href="#style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <style>
         body {
             min-height: 100vh;
@@ -83,125 +83,46 @@
           xmlhttp.open("GET","livesearch.php?q="+str,true);
           xmlhttp.send();
         }
-        </script>
+    </script>
 </head>
 <body class="d-flex h-100 text-dark">
-    <main>
-        <!-- Side nav bar -->
-        <div class="d-flex flex-column shadow flex-shrink-0 bg-light" style="width: 4.5rem; padding-top: 5%; color: blueviolet;">
-            <a href="index.html" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
-                <span style="font-weight:900; color: #000; font-family: cursive;">myFin</span>
-            </a>
-            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                <li>
-                    <a href="index.html" class="nav-link  text-light py-3 " title="Dashboard" data-bs-toggle="tooltip" style="border: 1px solid ; background: blueviolet ;">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="Cart" data-bs-toggle="tooltip" data-bs-placement="right" data-toggle="modal" data-target="#saveModal">
-                        <i class="fas fa-cart-plus"  style="color: blueviolet"><span id="cart-count">0</span></i> 
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="analysis.html" class="nav-link  py-3 border-bottom" aria-current="page" title="Analysis" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-chart-bar" style="color: blueviolet"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="history.html" class="nav-link py-3 border-bottom" title="History" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-history"  style="color: blueviolet"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="Security" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-user-shield"  style="color: blueviolet"></i>
-                    </a>
-                </li>
-            </ul>
-            <div class="dropdown border-top">
-                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/img/bg/bg-1.jpg" alt="mdo" width="24" height="24" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container-fluid" style="width: 95.5rem; background: #0001; overflow-x: scroll; ">
+    <main class="h-100">
+        <div class="container-fluid" id="cont_body">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row mt-2">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 d-flex justify-content-between">
-                        <!-- <input type="text" name="Search" class="form-control" placeholder="Search...">
-                            <button class="btn"><i class="fas fa-search"></i></button> -->
-                            <form>
-                                <input type="text" size="30" onkeyup="showResult(this.value)">
-                                <div id="livesearch"></div>
-                            </form>
+                    <div class="row top-area">
+                        <div class="container-fluid top-area-one">
+                            <div class="row">                            
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <div class="title-top-area-0">
+                                                <div class="title-top-area">
+                                                    <span class="text-uppercase">
+                                                        Mugumoini
+                                                    </span>
+                                                    <h2>Electronics</h2>
+                                                </div>
+                                                <form>
+                                                    <p  class="d-flex justify-content-between p-2">
+                                                        <input type="text" size=" " onkeyup="showResult(this.value)" class="pl-2" placeholder="Search...">
+                                                        <i class="fas fa-search pr-5 pt-1"></i>
+                                                    </p>
+                                                    <div id="livesearch"></div>
+                                                </form>
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="col-md-4"></div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Tecno Camon 18</h5>
-                              <p class="card-text">Price: Kshs. 19,000</p>
-                              <p class="card-text">Available: 3</p>
-                              <button class="btn btn-primary add-to-cart" data-name="Tecno Camon 18" data-price="19000" data-available="3">Add to Cart</button>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Samsung A13</h5>
-                              <p class="card-text">Price: Kshs. 23,500</p>
-                              <p class="card-text">Available: 5</p>
-                              <button class="btn btn-primary add-to-cart" data-name="Samsung A13" data-price="23500" data-available="5">Add to Cart</button>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Oppo</h5>
-                              <p class="card-text">Price: Kshs. 13,000</p>
-                              <p class="card-text">Available: 2</p>
-                              <button class="btn btn-primary add-to-cart" data-name="Oppo" data-price="13000" data-available="2">Add to Cart</button>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Huawei Y7</h5>
-                              <p class="card-text">Price: Kshs. 13,000</p>
-                              <p class="card-text">Available: 4</p>
-                              <button class="btn btn-primary add-to-cart" data-name="Huawei Y7" data-price="13000" data-available="4">Add to Cart</button>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Random</h5>
-                              <p class="card-text">Price: Kshs. 200 (300)</p>
-                              <p class="card-text">Available: 200</p>
-                              <button class="btn btn-primary add-to-cart" data-name="Random" data-price="200" data-available="200">Add to Cart</button>
-                            </div>
-                          </div>
-                        </div>
-                    
-                    
+                    <div class="row pt-4" id="products_display">
+                        <!-- Prodcts display dynamically -->
                     </div>
+                </div>
 
                     <!-- <div class="row mt-4">
                         <div class="col-md-12">
@@ -213,24 +134,21 @@
                             </center>
                         </div>
                     </div> -->
-
                 </div>
             </div>
-
-
         </div>
         <!-- cart modal -->
-        <div class="modal fade " id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="box-shadow: 0 2px 6px 0 blueviolet; background:#0009">
+        <div class="modal fade " id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="box-shadow: 0 2px 6px 0 #004; background:#0039">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header shadow">
-                        <h5 class="modal-title text-success" style="font-weight: 900; "><i class="fas fa-cart"></i> Cart </h5>
-                        <button type="button" class="close text-success" data-dismiss="modal" aria-label="Close" style="font-weight: 900; outline: none;">
+                        <h5 class="modal-title" style="font-weight: 900; color: #004; "><i class="fas fa-cart-plus"></i> Cart </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-weight: 900; outline: none; color: #004;">
                             <span aria-hidden="true" class="">&times;</span> 
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div id="" class="container mt-5">
+                        <div id="" class="container">
                             <ul id="cart" class="list-group">
                                 <!-- Cart Items  -->
                             </ul>
@@ -241,12 +159,62 @@
                         <div class="modal-footer d-flex justify-content-between">
                             <button id="clear-cart" class="btn btn-danger">Clear Cart</button>                        
                             <div class="">
-                                <button type="button" class="btn" style=" font-weight: 700; color: #fff; background-color: #0009;" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn" style=" font-weight: 700; color: #fff; background-color: #0049;" data-dismiss="modal">Close</button>
                                 <button id="checkout-btn" class="btn btn-success">Checkout</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Side nav bar -->
+        <div class="d-flex flex-column shadow flex-shrink-0 bg-light" style="width: 4.5rem; padding-top: 5%; color: rgb(245, 221, 6);">
+            <a href="index.html" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+                <span style="font-weight:900; color: #0049; font-family: cursive;">POS</span>
+            </a>
+            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i class="fas fa-tachometer-alt"  style="color: #004"></i> 
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" class="nav-link  py-3 " title="Transact" data-bs-toggle="tooltip" style="border: 1px solid rgb(245, 221, 6); color: rgb(245, 221, 6); background: #004;">
+                        <i class="fas fa-exchange-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom" title="Cart" data-bs-toggle="tooltip" data-bs-placement="right" data-toggle="modal" data-target="#saveModal">
+                        <i class="fas fa-cart-plus"  style="color: #004"><span id="cart-count">0</span></i> 
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link  py-3 border-bottom" aria-current="page" title="Analysis" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i class="fas fa-chart-bar" style="color: #004"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom" title="History" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i class="fas fa-history"  style="color: #004"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 border-bottom" title="Security" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i class="fas fa-user-shield"  style="color: #004"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="dropdown border-top">
+                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="assets/img/bg/bg-1.jpg" alt="shop" width="24" height="24" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                    <li><a class="dropdown-item" href="#">New user...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
             </div>
         </div>
     </main>
