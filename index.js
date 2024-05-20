@@ -11,6 +11,19 @@ $(document).ready(function(){
         });
     }
 
+    // Event listener for product clicks to show modal
+    $('#products_display').on('click', '.search-results', function(){
+        var name = $(this).data('name');
+        var description = $(this).data('description');
+        var price = $(this).data('price');
+        var available = $(this).data('available');
+
+        $('#modalProductName').text(name);
+        $('#modalProductDescription').text(description);
+        $('#modalProductPrice').text(price);
+        $('#modalProductAvailable').text(available);
+    });
+    
     // Initialize cart from localStorage
     var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -29,19 +42,26 @@ $(document).ready(function(){
             var subtotal = item.price * item.quantity;
             total += subtotal;
             cartList.append(`
-                <li class="list-group-item" style="font-weight: 400">
-                    <span style="font-weight: 900">${item.name} - Kshs. ${item.price} x ${item.quantity}</span>
+                <li class="list-group-item mb-1" style="font-weight: 400;background: #0039; color: white; ">
+                    <span style="font-weight: 900">${item.name}  @ Kshs. ${item.price}</span>
                     <br>
-                    <button class="btn btn-sm btn-outline-secondary quantity-btn" data-index="${index}" data-type="decrease"><i class="fas fa-minus"></i></button>
-                    <button class="btn btn-sm btn-outline-secondary quantity-btn" data-index="${index}" data-type="increase"><i class="fas fa-plus"></i></button>
+                    <button class="btn btn-sm quantity-btn" data-index="${index}" data-type="decrease" style="background: #0049; color:rgb(245, 221, 6);"><i class="fas fa-minus"></i></button>
+                    <span style='font-weight: 900'>${item.quantity}</span>
+                    <button class="btn btn-sm quantity-btn" data-index="${index}" data-type="increase" style="background: #0049; color:rgb(245, 221, 6);"><i class="fas fa-plus"></i></button>
                     = Kshs. ${subtotal}
-                    <span class="remove-item-btn text-danger" style="cursor:pointer" data-index="${index}">Remove</span>
+                    <button class="btn btn-sm remove-item-btn bg-transparent" data-index="${index}" style='color: red'><i class="fas fa-times"></i></button>
                 </li>
             `);
         });
 
         $('#total').text(total);
         $('#cart-count').text(cart.length);
+
+        if (cart.length === 0) {
+            $('.cart-container').show();
+        } else {
+            $('.cart-container').hide();
+        }
 
         // Attach event handlers
         attachCartHandlers();
@@ -77,7 +97,6 @@ $(document).ready(function(){
             displayCart();
         });
     }
-
 
     // Add to cart button click event using event delegation
     $('#products_display').on('click', '.add-to-cart', function(){
@@ -130,7 +149,6 @@ $(document).ready(function(){
         saveCart();
         displayCart();
     });
-
 
     // Initial display of cart
     displayCart();

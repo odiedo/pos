@@ -5,82 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Odiedo Paul">
-    <title>Shop</title>
+    <title>POS Analysis</title>
     <link rel="stylesheet" href="assets/fonts/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="assets/dist/css/bootstrap.css" rel="stylesheet">
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
-
     <link href="style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-
-    </style>
-    <script>
-        function showResult(str) {
-          if (str.length==0) {
-            document.getElementById("livesearch").innerHTML="";
-            document.getElementById("livesearch").style.border="0px";
-            return;
-          }
-          var xmlhttp=new XMLHttpRequest();
-          xmlhttp.onreadystatechange=function() {
-            if (this.readyState==4 && this.status==200) {
-              document.getElementById("livesearch").innerHTML=this.responseText;
-              document.getElementById("livesearch").style.border="font-weight: 900";
-            }
-          }
-          xmlhttp.open("GET","livesearch.php?q="+str,true);
-          xmlhttp.send();
+        body {
+            background: linear-gradient(135deg, rgb(245, 221, 6), #004);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
         }
-    </script>
+        main {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100vh;
+            max-height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        .dashboard {
+            padding: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #0028;
+            color: #f5dd06;
+        }
+        .card-header {
+            background: #0049;
+            color: #f5dd06;
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+            padding: 10px 20px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .side-nav {
+            width: 4.5rem;
+            background: #0049;
+            padding-top: 5%;
+            color: rgb(245, 221, 6);
+        }
+        .side-nav a {
+            color: rgb(245, 221, 6);
+        }
+        .side-nav a.active {
+            background: #004;
+            border: 1px solid rgb(245, 221, 6);
+        }
+        .side-nav i {
+            font-size: 20px;
+        }
+    </style>
 </head>
-<body class="d-flex h-100 text-dark">
+<body class="d-flex h-100">
     <main class="h-100">
         <div class="container-fluid" id="cont_body">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row top-area">
-                        <div class="container-fluid top-area-one">
-                            <div class="row">                            
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6">
-                                            <div class="title-top-area-0">
-                                                <div class="title-top-area">
-                                                    <span class="text-uppercase">
-                                                        Mugumoini
-                                                    </span>
-                                                    <h2>Electronics</h2>
-                                                </div>
-                                                <form>
-                                                    <p  class="d-flex justify-content-between p-2">
-                                                        <input type="text" size=" " onkeyup="showResult(this.value)" class="pl-2" placeholder="Search...">
-                                                        <i class="fas fa-search pr-5 pt-1"></i>
-                                                    </p>
-                                                    <div id="livesearch"></div>
-                                                </form>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3"></div>
+                    <div class="content">
+                        <h1 class="text-center mb-4">Sales Analysis</h1>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Sales Overview</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="salesChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Product Performance</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="productChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Customer Demographics</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="customerChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Monthly Sales</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="monthlySalesChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row pt-4" id="products_display">
-                        <!-- Prodcts display dynamically -->
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
         <!-- Cart Modal -->
         <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(135deg, rgb(245, 221, 6), #004); width: 100%; height: 100vh;">
             <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style="max-height:; border-radius: 20px; background-color: #0049;">
+                <div class="modal-content" style="max-height: 90%; border-radius: 20px; background-color: #0049;">
                     <div class="card bg-transparent border-0 shadow-none">
                         <div class="card-body">
                             <div class="border-0 d-flex justify-content-between">
@@ -115,6 +159,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Side nav bar -->
         <div class="side-nav d-flex flex-column shadow flex-shrink-0">
             <a href="index.html" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
@@ -127,8 +172,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html" class="nav-link py-3 " style="border: 1px solid rgb(245, 221, 6); color: #004; background: rgb(245, 221, 6);" title="Transact" data-bs-toggle="tooltip">
-                        <i class="fas fa-exchange-alt" style="color: #004;"></i>
+                    <a href="index.html" class="nav-link py-3 " title="Transact" data-bs-toggle="tooltip">
+                        <i class="fas fa-exchange-alt"></i>
                     </a>
                 </li>
                 <li>
@@ -137,8 +182,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="analysis.html" class="nav-link py-3"  title="Analysis" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-chart-bar"></i>
+                    <a href="analysis.html" class="nav-link py-3 " style="border: 1px solid rgb(245, 221, 6); color: #004; background: rgb(245, 221, 6);" title="Analysis" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i class="fas fa-chart-bar" style="color: #004;"></i>
                     </a>
                 </li>
                 <li>
@@ -148,56 +193,6 @@
                 </li>
                 <li>
                     <a href="#" class="nav-link py-3 " title="Security" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-user-shield"></i>
-                    </a>
-                </li>
-            </ul>
-            <div class="dropdown border-top">
-                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/img/bg/bg-1.jpg" loading="lazy" alt="shop" width="24" height="24" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                    <li><a class="dropdown-item" href="#">New user...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Side nav bar -->
-        <!-- <div class="d-flex flex-column shadow bg-transparent flex-shrink-0 bg-light" style="width: 4.5rem; padding-top: 5%; color: rgb(245, 221, 6);">
-            <a href="index.html" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
-                <span style="font-weight:900; color: rgb(245, 221, 6); font-family: cursive;">POS</span>
-            </a>
-            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-tachometer-alt"></i> 
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html" class="nav-link  py-3 " title="Transact" data-bs-toggle="tooltip" style="border: 1px solid rgb(245, 221, 6); color: rgb(245, 221, 6); background: #004;">
-                        <i class="fas fa-exchange-alt"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="cart.html" class="nav-link py-3 border-bottom" title="Cart" data-bs-toggle="tooltip" data-bs-placement="right" data-toggle="modal" data-target="#saveModal">
-                        <i class="fas fa-cart-plus"><span id="cart-count">0</span></i> 
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="analysis.html" class="nav-link  py-3 border-bottom" aria-current="page" title="Analysis" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-chart-bar"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="History" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-history"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="Security" data-bs-toggle="tooltip" data-bs-placement="right">
                         <i class="fas fa-user-shield"></i>
                     </a>
                 </li>
@@ -214,7 +209,7 @@
                     <li><a class="dropdown-item" href="#">Sign out</a></li>
                 </ul>
             </div>
-        </div> -->
+        </div>
     </main>
     <script>
         (function () {
@@ -224,6 +219,65 @@
                 new bootstrap.Tooltip(tooltipTriggerEl)
             })
         })()
+    </script>
+    <script>
+       // Sales Chart
+       var salesCtx = document.getElementById('salesChart').getContext('2d');
+        var salesChart = new Chart(salesCtx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [120, 190, 300, 500, 200, 300, 400],
+                    backgroundColor: 'rgba(245, 221, 6, 0.2)',
+                    borderColor: 'rgba(245, 221, 6, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Product Performance Chart
+        var productCtx = document.getElementById('productChart').getContext('2d');
+        var productChart = new Chart(productCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E'],
+                datasets: [{
+                    label: 'Performance',
+                    data: [50, 100, 150, 200, 250],
+                    backgroundColor: [
+                        'rgba(245, 221, 6, 0.2)',
+                        'rgba(245, 221, 6, 0.2)',
+                        'rgba(245, 221, 6, 0.2)',
+                        'rgba(245, 221, 6, 0.2)',
+                        'rgba(245, 221, 6, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(245, 221, 6, 1)',
+                        'rgba(245, 221, 6, 1)',
+                        'rgba(245, 221, 6, 1)',
+                        'rgba(245, 221, 6, 1)',
+                        'rgba(245, 221, 6, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="index.js"></script>

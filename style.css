@@ -15,7 +15,7 @@
     object-fit: contain;
 }
 #cont_body .top-area .top-area-one {
-    background: #0009;
+    background: #0049;
     height: 50vh;
     width: 100wh;
     margin: 0;
@@ -76,13 +76,6 @@
 }
 
 /* product display */
-/* #products_display {
-    width: 100wh;
-    padding: 0%;
-    margin: 0%;
-    line-height: 12px;
-    text-align: center;
-} */
 #products_display .col .card {
     width: 100%;
     background-color: ;
@@ -99,11 +92,13 @@
     font-size: 12px;
 }
 #checkout-btn {
-    background: #004;
-    border: 1px solid rgb(245, 221, 6);
-    color: rgb(245, 221, 6);
+    background:transparent;
+    color: #004;
     font-weight: 900;
     outline: none;
+    border: 1px solid #004;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;    
 }
 #checkout-btn:hover {
     background: rgb(245, 221, 6);
@@ -113,16 +108,19 @@
     outline: none;
 }
 #clear-cart {
-    background: #004;
-    border: 1px solid red;
     color:red;
+    background-color: transparent;
     font-weight: 900;
     outline: none;
 }
 #clear-cart:hover {
-    background: red;
-    border: 1px solid #004;
     color: #004;
+    font-weight: 900;
+    outline: none;
+}
+#clear-cart:after {
+    color:red;
+    background-color: transparent;
     font-weight: 900;
     outline: none;
 }
@@ -141,4 +139,225 @@
     color: #004;
     font-weight: 900;
     outline: none;
+}
+
+#saveModal {
+    border-bottom-left-radius: 10px;
+}
+#saveModal .modal-body {
+    max-height: 50vh;
+    overflow-x: auto;
+}
+
+#total-payment .payment {
+    width: 60%;
+    margin: auto;
+}
+#total-payment .payment .active {
+    line-height: 11px;
+    font-weight: 900;
+    width: 80px;
+    height: 50px;
+    background-color: #0039;
+    color: rgb(245, 221, 6);
+    outline: none;
+    border: none;
+}
+#total-payment .payment .deactive {
+    line-height: 11px;
+    font-weight: 900;
+    width: 80px;
+    height: 50px;
+    background-color: #0002;
+    color: #000;
+    outline: none;
+    border: none;
+}
+
+#total-payment .payment .deactive:hover {
+    line-height: 11px;
+    font-weight: 900;
+    width: 80px;
+    height: 50px;
+    background-color: red;
+    color: rgb(245, 221, 6);
+    outline: none;
+    border: none;
+}
+body {
+    background: linear-gradient(135deg, rgb(245, 221, 6), #004);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.card-body {
+    padding: 20px;
+}
+.side-nav {
+    width: 4.5rem;
+    background: #0049;
+    padding-top: 5%;
+    color: rgb(245, 221, 6);
+}
+.side-nav a {
+    color: rgb(245, 221, 6);
+}
+.side-nav a.active {
+    background: #004;
+    border: 1px solid rgb(245, 221, 6);
+}
+.side-nav i {
+    font-size: 20px;
+    color: rgb(245, 221, 6);
+}
+.side-nav .nav-link {
+    color: rgb(245, 221, 6);
+    font-weight: 900;
+    text-decoration: none;
+}
+.dashboard {
+    padding: 20px;
+}
+.balance {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.btn-action {
+    margin-right: 10px;
+}
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav i {
+    color: blueviolet;
+}
+.modal small {
+    font-weight: 900;
+}
+.modal input[type="text"],
+.modal input[type="number"],
+.modal input[type="date"] {
+    border: 1px solid blueviolet;
+}
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }   
+}
+.hidden {
+    display: none;
+}
+
+.cart-container {
+    text-align: center;
+    display: none; 
+}
+
+
+.cart {
+    position: relative;
+    animation: bounce 3s infinite;
+}
+
+#login .login-card {
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+#login .card-body {
+    padding: 2rem;
+}
+
+#login .form-control {
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+#login .btn {
+    border-radius: 30px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border: none;
+    transition: background 0.3s ease;
+}
+
+#login .btn:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+}
+
+#login a {
+    color: #6a11cb;
+    transition: color 0.3s ease;
+}
+
+#login a:hover {
+    color: #2575fc;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#login .logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    display: block;
+    border: 2px solid #004;
+    padding: 4px;
+    animation: bounce 2s infinite;
+}
+
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+#login .empty-message {
+    font-size: 18px;
+    color: #616161;
+    animation: fadeIn 4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
