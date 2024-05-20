@@ -15,6 +15,17 @@
 
     <link href="style.css" rel="stylesheet">
     <style>
+        .form-container {
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            color: #004;
+            font-weight: 900;
+            text-shadow: 0 0 10px #f5dd06;
+        }
 
     </style>
     <script>
@@ -80,7 +91,7 @@
         <!-- Cart Modal -->
         <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(135deg, rgb(245, 221, 6), #004); width: 100%; height: 100vh;">
             <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style="max-height:; border-radius: 20px; background-color: #0049;">
+                <div class="modal-content" style="border-radius: 10px; background-color: #0049;">
                     <div class="card bg-transparent border-0 shadow-none">
                         <div class="card-body">
                             <div class="border-0 d-flex justify-content-between">
@@ -108,6 +119,25 @@
                                 <br>
                                 <div class="process-btn d-flex justify-content-center">
                                     <button id="checkout-btn" class="btn btn-primary">Process <i class="fas fa-angle-double-right"></i></button>
+                                </div>
+                                <div class="row pt-4 hidden">
+                                    <div class="form-container">
+                                        <div id="step1">
+                                            <h2 class="shadow text-center"><i class="fas fa-money-bill-alt"></i> M-pesa Payment</h2>
+                                            <form id="formStep1">
+                                                <label for="phone">Phone:</label>
+                                                <input type="text" id="phone" name="phone" required class="form-control">
+                                                <label for="amount">Amount:</label>
+                                                <input type="number" id="amount" name="amount" required class="form-control">
+                                                <button type="button" id="processButton" class="btn ">Process</button>
+                                            </form>
+                                        </div>
+                                        <div id="step2" style="display: none;">
+                                            <h2>Step 2: Receipt</h2>
+                                            <p id="receipt"></p>
+                                            <button id="completeButton">Complete</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -165,56 +195,6 @@
                 </ul>
             </div>
         </div>
-        <!-- Side nav bar -->
-        <!-- <div class="d-flex flex-column shadow bg-transparent flex-shrink-0 bg-light" style="width: 4.5rem; padding-top: 5%; color: rgb(245, 221, 6);">
-            <a href="index.html" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
-                <span style="font-weight:900; color: rgb(245, 221, 6); font-family: cursive;">POS</span>
-            </a>
-            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-tachometer-alt"></i> 
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html" class="nav-link  py-3 " title="Transact" data-bs-toggle="tooltip" style="border: 1px solid rgb(245, 221, 6); color: rgb(245, 221, 6); background: #004;">
-                        <i class="fas fa-exchange-alt"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="cart.html" class="nav-link py-3 border-bottom" title="Cart" data-bs-toggle="tooltip" data-bs-placement="right" data-toggle="modal" data-target="#saveModal">
-                        <i class="fas fa-cart-plus"><span id="cart-count">0</span></i> 
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="analysis.html" class="nav-link  py-3 border-bottom" aria-current="page" title="Analysis" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-chart-bar"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="History" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-history"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="Security" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-user-shield"></i>
-                    </a>
-                </li>
-            </ul>
-            <div class="dropdown border-top">
-                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/img/bg/bg-1.jpg" alt="shop" width="24" height="24" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                    <li><a class="dropdown-item" href="#">New user...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
-        </div> -->
     </main>
     <script>
         (function () {
@@ -227,6 +207,7 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="index.js"></script>
+    <script src="cart.js"></script>
     <script src="assets/dist/js/bootstrap.bundle.js"></script>
     <script src="assets/dist/js/bootstrap.min.js"></script>
 </body>

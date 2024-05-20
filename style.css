@@ -92,8 +92,8 @@
     font-size: 12px;
 }
 #checkout-btn {
-    background:transparent;
-    color: #004;
+    background: #0039;
+    color: rgb(245, 221, 6);
     font-weight: 900;
     outline: none;
     border: 1px solid #004;
@@ -168,8 +168,8 @@
     font-weight: 900;
     width: 80px;
     height: 50px;
-    background-color: #0002;
-    color: #000;
+    background-color: #0049;
+    color: white;
     outline: none;
     border: none;
 }

@@ -15,9 +15,9 @@ if (!empty($query)) {
             $name = $row["name"];
             $price = $row["price"];
             $available = $row["available"];
-            $description = "Description not available";
+            $description = $row["description"];
             
-            $response .= "<a href='#' class='pl-2 pr-2 d-flex justify-content-between search-results' data-toggle='modal' data-target='#productModal' data-id='$id' data-name='$name' data-price='$price' data-available='$available' data-description='$description'>";
+            $response .= "<a href='product_details.html?id=$id' class='pl-2 pr-2 d-flex justify-content-between search-results'>";
             $response .= "<h6>$name</h6>";
             $response .= "Kshs. $price";
             $response .= "</a>";
