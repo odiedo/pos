@@ -122,23 +122,24 @@
             </div>
         </div>
         <!-- Cart Modal -->
-        <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(135deg, rgb(245, 221, 6), #004); width: 100%; height: 100vh;">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style="max-height: 90%; border-radius: 20px; background-color: #0049;">
+        <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(135deg, rgb(245, 221, 6), #004); width: 100wh; height: 100vh;">
+            <div class="modal-dialog" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 90vh; width: 100%; padding-left: 0; padding-right: 20px;">
+                <div class="modal-content" style="border-radius: 10px; background-color: #0049; height: 85%;">
                     <div class="card bg-transparent border-0 shadow-none">
-                        <div class="card-body">
-                            <div class="border-0 d-flex justify-content-between">
+                        <div class="card-body p-0 m-0">
+                            <div class="border-0 p-2 d-flex justify-content-between">
                                 <button class="btn text-light bg-transparent" data-dismiss="modal"><i class="fas fa-times text-danger rounded-circle"></i></button>
                                 <button id="clear-cart" class="btn text-light bg-transparent"><i class="fas fa-trash"></i> Clear</button>
                                 <h5 class="modal-title" style="font-weight: 900; color: #f5dd06;"><i class="fas fa-cart-plus"></i> Cart</h5>
                             </div>
                             <div class="cart-container p-4 m-4">
+                                <br><br><br><br>
                                 <div class="cart text-center">
                                     <span class="cart-wheel"><i class="fas fa-cart-plus fa-3x" style="color: #f5dd06;"></i></span>
                                 </div>
                                 <div class="empty-message text-center" style="color: #f5dd06;">Your Cart is Empty</div>
                             </div>
-                            <ul id="cart" class="list-group" style="position: relative; max-height: 50%; overflow-x: auto; background-color: #004;">
+                            <ul id="cart" class="list-group" style="position: relative; max-height: 80%; overflow-x: auto; background-color: #004;">
                                 <!-- Cart Items -->
                             </ul>
                             <div class="card-footer bg-transparent shadow-none border-0" style="line-height: 15px; position: relative;">
@@ -152,6 +153,25 @@
                                 <br>
                                 <div class="process-btn d-flex justify-content-center">
                                     <button id="checkout-btn" class="btn btn-primary">Process <i class="fas fa-angle-double-right"></i></button>
+                                </div>
+                                <div class="row pt-4 hidden">
+                                    <div class="form-container">
+                                        <div id="step1">
+                                            <h2 class="shadow text-center"><i class="fas fa-money-bill-alt"></i> M-pesa Payment</h2>
+                                            <form id="formStep1">
+                                                <label for="phone">Phone:</label>
+                                                <input type="text" id="phone" name="phone" required class="form-control">
+                                                <label for="amount">Amount:</label>
+                                                <input type="number" id="amount" name="amount" required class="form-control">
+                                                <button type="button" id="processButton" class="btn ">Process</button>
+                                            </form>
+                                        </div>
+                                        <div id="step2" style="display: none;">
+                                            <h2>Step 2: Receipt</h2>
+                                            <p id="receipt"></p>
+                                            <button id="completeButton">Complete</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

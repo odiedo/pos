@@ -1,47 +1,35 @@
 $(document).ready(function(){
     fetchProducts();
-    // Fetch products from server
+
     function fetchProducts() {
         $.ajax({
             url: 'products.php',
             method: 'GET',
             success: function(response) {
                 $('#products_display').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching products:', error);
             }
         });
     }
 
-    // Event listener for product clicks to show modal
-    $('#products_display').on('click', '.search-results', function(){
-        var name = $(this).data('name');
-        var description = $(this).data('description');
-        var price = $(this).data('price');
-        var available = $(this).data('available');
-
-        $('#modalProductName').text(name);
-        $('#modalProductDescription').text(description);
-        $('#modalProductPrice').text(price);
-        $('#modalProductAvailable').text(available);
-    });
-    
     // Initialize cart from localStorage
     var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Function to save cart to localStorage
     function saveCart() {
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // Function to display cart
     function displayCart() {
         var cartList = $('#cart');
-        cartList.empty();
+        var cartItemsHtml = '';
         var total = 0;
 
         cart.forEach(function(item, index){
             var subtotal = item.price * item.quantity;
             total += subtotal;
-            cartList.append(`
+            cartItemsHtml += `
                 <li class="list-group-item mb-1" style="font-weight: 400;background: #0039; color: white; ">
                     <span style="font-weight: 900">${item.name}  @ Kshs. ${item.price}</span>
                     <br>
@@ -51,23 +39,19 @@ $(document).ready(function(){
                     = Kshs. ${subtotal}
                     <button class="btn btn-sm remove-item-btn bg-transparent" data-index="${index}" style='color: red'><i class="fas fa-times"></i></button>
                 </li>
-            `);
+            `;
         });
 
+        cartList.html(cartItemsHtml);
         $('#total').text(total);
         $('#cart-count').text(cart.length);
-
-        if (cart.length === 0) {
-            $('.cart-container').show();
-        } else {
-            $('.cart-container').hide();
-        }
-
-        // Attach event handlers
+        $('.cart-container').toggle(cart.length === 0);
+    
+    
         attachCartHandlers();
     }
 
-    // Function to attach event handlers for cart items
+
     function attachCartHandlers() {
         $('.remove-item-btn').click(function(){
             var index = $(this).data('index');
@@ -98,7 +82,6 @@ $(document).ready(function(){
         });
     }
 
-    // Add to cart button click event using event delegation
     $('#products_display').on('click', '.add-to-cart', function(){
         var name = $(this).data('name');
         var price = Number($(this).data('price'));
@@ -143,13 +126,11 @@ $(document).ready(function(){
         }, 2000);
     }
 
-    // Clear cart button click event
     $('#clear-cart').click(function(){
         cart = [];
         saveCart();
         displayCart();
     });
 
-    // Initial display of cart
     displayCart();
 });

@@ -29,23 +29,49 @@
 
     </style>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Attach click event to the parent container only once
+            document.getElementById("livesearch").addEventListener("click", function(event) {
+                // Use event delegation to handle clicks on dynamic elements
+                if (event.target && (event.target.classList.contains("search-result") || event.target.closest('.search-result'))) {
+                    let target = event.target.closest('.search-result');
+                    var id = target.getAttribute("data-id");
+                    var name = target.getAttribute("data-name");
+                    var price = target.getAttribute("data-price");
+                    var available = target.getAttribute("data-available");
+                    var description = target.getAttribute("data-description");
+        
+                    // Set modal content
+                    document.getElementById("modalTitle").innerText = name;
+                    document.getElementById("modalPrice").innerText = "Kshs. " + price;
+                    document.getElementById("modalAvailable").innerText = available;
+                    document.getElementById("modalDescription").innerText = description;
+        
+                    // Show the modal
+                    var modal = new bootstrap.Modal(document.getElementById('productModal'));
+                    modal.show();
+                }
+            });
+        });
+        
         function showResult(str) {
-          if (str.length==0) {
-            document.getElementById("livesearch").innerHTML="";
-            document.getElementById("livesearch").style.border="0px";
-            return;
-          }
-          var xmlhttp=new XMLHttpRequest();
-          xmlhttp.onreadystatechange=function() {
-            if (this.readyState==4 && this.status==200) {
-              document.getElementById("livesearch").innerHTML=this.responseText;
-              document.getElementById("livesearch").style.border="font-weight: 900";
+            if (str.length == 0) {
+                document.getElementById("livesearch").innerHTML = "";
+                document.getElementById("livesearch").style.border = "0px";
+                return;
             }
-          }
-          xmlhttp.open("GET","livesearch.php?q="+str,true);
-          xmlhttp.send();
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("livesearch").innerHTML = this.responseText;
+                    document.getElementById("livesearch").style.border = "1px solid #000";
+                }
+            }
+            xmlhttp.open("GET", "livesearch.php?q=" + str, true);
+            xmlhttp.send();
         }
     </script>
+    
 </head>
 <body class="d-flex h-100 text-dark">
     <main class="h-100">
@@ -67,12 +93,12 @@
                                                     <h2>Electronics</h2>
                                                 </div>
                                                 <form>
-                                                    <p  class="d-flex justify-content-between p-2">
-                                                        <input type="text" size=" " onkeyup="showResult(this.value)" class="pl-2" placeholder="Search...">
+                                                    <p class="d-flex justify-content-between p-2">
+                                                        <input type="text" onkeyup="showResult(this.value)" class="pl-2" placeholder="Search...">
                                                         <i class="fas fa-search pr-5 pt-1"></i>
                                                     </p>
                                                     <div id="livesearch"></div>
-                                                </form>
+                                                </form>                                                
                                             </div> 
                                         </div>
                                         <div class="col-md-3"></div>
@@ -88,18 +114,32 @@
                 </div>
             </div>
         </div>
+        <!-- Product details Modal -->
+        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true" style="background: linear-gradient(135deg, rgb(245, 221, 6), #0099); width: 100wh; height: 100vh;">
+            <div class="modal-dialog" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 50%; width: 100%; padding-left: 0; padding-right: 20px;">
+                <div class="modal-content shadow" style="border-radius: 10px; color: #f5dd06; background-color: #0049;">
+                    <div class="modal-body border-0">
+                        <h4 id="modalTitle" style="text-align: center; font-weight: 900; font-size: large;"></h4>
+                        <p class="d-flex justify-content-between"><span>Price:</span> <span id="modalPrice"></span></p>
+                        <p class="d-flex justify-content-between"><span>Available:</span> <span id="modalAvailable"></span></p>
+                        <p class="d-flex justify-content-between"><span>Description:</span> <span id="modalDescription"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Cart Modal -->
-        <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(135deg, rgb(245, 221, 6), #004); width: 100%; height: 100vh;">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style="border-radius: 10px; background-color: #0049;">
+        <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(135deg, rgb(245, 221, 6), #004); width: 100wh; height: 100vh;">
+            <div class="modal-dialog" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 90vh; width: 100%; padding-left: 0; padding-right: 20px;">
+                <div class="modal-content" style="border-radius: 10px; background-color: #0049; height: 90%;">
                     <div class="card bg-transparent border-0 shadow-none">
-                        <div class="card-body">
-                            <div class="border-0 d-flex justify-content-between">
+                        <div class="card-body p-0 m-0">
+                            <div class="border-0 p-2 d-flex justify-content-between">
                                 <button class="btn text-light bg-transparent" data-dismiss="modal"><i class="fas fa-times text-danger rounded-circle"></i></button>
                                 <button id="clear-cart" class="btn text-light bg-transparent"><i class="fas fa-trash"></i> Clear</button>
                                 <h5 class="modal-title" style="font-weight: 900; color: #f5dd06;"><i class="fas fa-cart-plus"></i> Cart</h5>
                             </div>
                             <div class="cart-container p-4 m-4">
+                                <br><br><br><br>
                                 <div class="cart text-center">
                                     <span class="cart-wheel"><i class="fas fa-cart-plus fa-3x" style="color: #f5dd06;"></i></span>
                                 </div>
@@ -108,7 +148,7 @@
                             <ul id="cart" class="list-group" style="position: relative; max-height: 50%; overflow-x: auto; background-color: #004;">
                                 <!-- Cart Items -->
                             </ul>
-                            <div class="card-footer bg-transparent shadow-none border-0" style="line-height: 15px; position: relative;">
+                            <div class="card-footer bg-transparent p-3 shadow-none border-0" style="line-height: 15px; position: relative; background: #0049;">
                                 <div id="total-payment">
                                     <span class="d-flex justify-content-between pl-4 pr-4" style="color: #f5dd06; font-weight: 900;">Total: <span id="total">Kshs. 0</span></span>
                                     <div class="container payment d-flex justify-content-center">
@@ -205,10 +245,11 @@
             })
         })()
     </script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="index.js"></script>
-    <script src="cart.js"></script>
     <script src="assets/dist/js/bootstrap.bundle.js"></script>
     <script src="assets/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+    
