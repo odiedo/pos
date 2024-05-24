@@ -38,8 +38,32 @@
                 transform: translateY(0);
             }
         }
-
-
+        
+        .search-box {
+            background: linear-gradient(130deg, #004, #0049, #004);
+        }
+        .search-box p {
+            width: 100%;
+            margin: auto;
+            border: 2px solid #f5dd06 ;
+            color: #f5dd06;
+            border-radius: 10px;
+        }
+        .search-box input[type="text"] {
+            border: none;
+            width: 90%;
+            padding: 3px;
+            background: transparent;
+            color: #f5dd06;
+            outline: none;
+        }
+        .search-box input[type="text"]::placeholder {
+            color: #f5dd06;
+            font-weight: 900;
+        }
+        .transact_details {
+            
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -91,87 +115,85 @@
         <div class="container-fluid bg-light" id="cont_body">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row top-area">
-                        <div class="container-fluid top-area-one">
-                            <div class="row">                            
+                    <div class="row search-box pt-2">
+                        <div class="col-md-3 pt-4" style="color: #f5dd06;">Mugumoini Electronics</div>
+                        <div class="col-md-6">
+                            <form>
+                                <p class="d-flex justify-content-center p-2 mb-2 shadow">
+                                    <input type="text" onkeyup="showResult(this.value)" class="p-2" placeholder="Search...">
+                                    <i class="fas fa-search p-3"></i>
+                                </p>
+                                <div id="livesearch"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="row">
                                 <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6">
-                                            <div class="title-top-area-0">
-                                                <div class="title-top-area">
-                                                    <span class="text-uppercase">
-                                                        Mugumoini
-                                                    </span>
-                                                    <h2>Electronics</h2>
-                                                </div>
-                                                <form>
-                                                    <p class="d-flex justify-content-between p-2">
-                                                        <input type="text" onkeyup="showResult(this.value)" class="pl-2" placeholder="Search...">
-                                                        <i class="fas fa-search pr-5 pt-1"></i>
-                                                    </p>
-                                                    <div id="livesearch" tabindex="100"></div>
-                                                </form>                                                
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3"></div>
-                                    </div>
+                                    <ul class="list-inline p-0 m-0" style="display: flex; list-style-type: none; padding: 0; overflow-x: auto;">
+                                        <li class="d-flex text-success m-2 p-1 justify-content-between" style="min-width: 150px; border: 1px solid #004; border-radius: 10px;">
+                                            <button class="btn bg-transparent border-0"><i class="fas fa-plus pt-1"></i> </button>
+                                            <button class="btn bg-transparent border-0 outline-0">oppo</button> 
+                                        </li>
+                                        <li class="d-flex text-success m-2 p-1 justify-content-between" style="min-width: 150px; border: 1px solid #004; border-radius: 10px;">
+                                            <button class="btn bg-transparent border-0"><i class="fas fa-plus pt-1"></i> </button>
+                                            <button class="btn bg-transparent border-0 outline-0">Tecno</button> 
+                                        </li>
+                                        <li class="d-flex text-success m-2 p-1 justify-content-between" style="min-width: 150px; border: 1px solid #004; border-radius: 10px;">
+                                            <button class="btn bg-transparent border-0"><i class="fas fa-plus pt-1"></i> </button>
+                                            <button class="btn bg-transparent border-0 outline-0">Samsung</button> 
+                                        </li>
+                                        <li class="d-flex text-success m-2 p-1 justify-content-between" style="min-width: 150px; border: 1px solid #004; border-radius: 10px;">
+                                            <button class="btn bg-transparent border-0"><i class="fas fa-plus pt-1"></i> </button>
+                                            <button class="btn bg-transparent border-0 outline-0">Huawei</button> 
+                                        </li>
+                                        <li class="d-flex text-success m-2 p-1 justify-content-between" style="min-width: 150px; border: 1px solid #004; border-radius: 10px;">
+                                            <button class="btn bg-transparent border-0"><i class="fas fa-plus pt-1"></i> </button>
+                                            <button class="btn bg-transparent border-0 outline-0">Random</button> 
+                                        </li>
+                                    </ul>
+                                    <div class="scroll-indicator"></div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset class="text-center border shadow p-4">
+                                        <legend><h3 style="font-family: cursive; font-weight: 900; color: #004">Recent transactions</h3></legend>
+                                        <p class="d-flex text-success text-small justify-content-between">
+                                            <span>oppo</span> 
+                                            <span>1500</span>
+                                            <i class="fas fa-plus"></i> 
+                                        </p>
+                                        <p class="d-flex text-danger text-small justify-content-between">
+                                            <span>Samsung</span> 
+                                            <span>1500</span>
+                                            <i class="fas fa-plus"></i> 
+                                        </p>
+                                        <p class="d-flex text-success text-small justify-content-between">
+                                            <span>Huawei</span> 
+                                            <span>1500</span>
+                                            <i class="fas fa-plus"></i> 
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset class="text-center border shadow pl-1 pr-1 ">
+                                        <legend><h3 style="font-family: cursive; font-weight: 900; color: #004">Top products</h3></legend>
+                                        <ul class="list-inline p-0 m-0" id="products_display" style="display: flex;  overflow-x: auto; list-style-type: none; padding: 0;">
+                                            <!-- Prodcts display dynamically -->
+            
+                                        </ul>
+                                        <div class="scroll-indicator"></div>
+                                    </fieldset>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- cards  -->
-                    <div class="row pt-2">
-                        <div class="col-md-4 mb-2">
-                            <div class="card border-0" style="animation: fadeInUp 1s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
-                                <div class="card-body">
-                                  <h5 class="card-title text-light font-weight-bold">Sales Summary</h5>
-                                  <h6 class="card-subtitle mb-2 text-muted">This Month</h6>
-                                  <p class="card-text h2 font-weight-bold text-light" style="text-shadow: 0 0 10px #f5dd06;">Kshs. 12,345</p>
-                                  <p class="card-text text-success font-weight-bold"><i class="fas fa-arrow-up"></i> 10% increase from last month</p>
-                                </div>
-                            </div>                              
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="card border-0 shadow" style="animation: fadeInUp 1.5s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
-                                <div class="card-body">
-                                  <h5 class="card-title text-light font-weight-bold">Top Products</h5>
-                                  <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Product 1 <span class="badge badge-primary badge-pill">1234</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Product 2 <span class="badge badge-primary badge-pill">987</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="card border-0 shadow" style="animation: fadeInUp 2s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
-                                <div class="card-body">
-                                  <h5 class="card-title text-light font-weight-bold">Inventory Status</h5>
-                                  <p class="card-text text-info">Current Stock: 150 items</p>
-                                  <p class="card-text text-danger"><i class="fas fa-exclamation-triangle"></i> 5 items low in stock</p>
-                                </div>
-                            </div>                              
-                        </div>
-                    </div>
                     <div class="row">
-                        <div class="col-md-4 mb-2">
-                            <div class="card border-0" style="animation: fadeInUp 2.5s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
-                                <div class="card-body">
-                                  <h5 class="card-title">Recent Transactions</h5>
-                                  <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Sale #1234 <span class="text-success">Kshs. 150.00</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Refund #1235 <span class="text-danger">-kshs. 30.00</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                            </div>                              
+                        <div class="container-fluid">
+
                         </div>
                     </div>
                 </div>
@@ -193,7 +215,7 @@
         <!-- Cart Modal -->
         <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(95deg, rgba(245, 221, 6, 0.9),#0049, #004); width: 100wh; height: 100vh;">
             <div class="modal-dialog" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 90vh; width: 100%; padding-left: 0; padding-right: 20px;">
-                <div class="modal-content" style="border-radius: 10px; background: linear-gradient(45deg, #004, #0049); height: 90%;">
+                <div class="modal-content" style="border-radius: 10px; background: linear-gradient(45deg, #004, #004); height: 90%;">
                     <div class="card bg-transparent border-0 shadow-none">
                         <div class="card-body p-0 m-0">
                             <div class="border-0 p-2 d-flex justify-content-between">
@@ -256,13 +278,13 @@
             </a>
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                 <li>
-                    <a href="index.html" class="nav-link py-3 " style="border: 1px solid rgb(245, 221, 6); color: #004; background: rgb(245, 221, 6);"  title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <i class="fas fa-tachometer-alt" style="color: #004;"></i>
+                    <a href="index.html" class="nav-link py-3 " title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i class="fas fa-tachometer-alt"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="transact.html" class="nav-link py-3 " title="Transact" data-bs-toggle="tooltip">
-                        <i class="fas fa-exchange-alt"></i>
+                    <a href="transact.html" class="nav-link py-3 " style="border: 1px solid rgb(245, 221, 6); color: #004; background: rgb(245, 221, 6);" title="Transact" data-bs-toggle="tooltip">
+                        <i class="fas fa-exchange-alt" style="color: #004;"></i>
                     </a>
                 </li>
                 <li>
