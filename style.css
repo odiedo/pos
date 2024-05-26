@@ -82,12 +82,15 @@
     font-weight: 600;
 }
 #products_display .col .card-text {
-    font-size: 12px;
+    font-size: 12px;    
 }
 #products_display .col .card-text-price {
     font-size: 12px;
 }
-#checkout-btn {
+
+#backOne,
+#nextReceipt,
+.printrct        {
     background: #0039;
     color: rgb(245, 221, 6);
     font-weight: 900;
@@ -96,7 +99,8 @@
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;    
 }
-#checkout-btn:hover {
+#backOne:hover,
+#nextReceipt:hover {
     background: rgb(245, 221, 6);
     border: 1px solid #004;
     color: #004;
@@ -377,7 +381,22 @@ nav i {
     }
 }
 
-#login .empty-message {
+@keyframes bounceLogo {
+    0%, 20%, 50%, 80%, 50% {
+        transform: scale(1);
+        text-shadow: 0 0 8px rgb(245, 221, 6);
+    }
+    40% {
+        transform: scale(1.2);
+        text-shadow: 0 0 10px rgb(245, 221, 6);
+    }
+    60% {
+        transform: scale(1);
+        text-shadow: 0 0 8px rgb(245, 221, 6);
+    }
+}
+
+.empty-message {
     font-size: 18px;
     color: #616161;
     animation: fadeIn 4s ease-in-out;

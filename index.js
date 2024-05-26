@@ -126,11 +126,30 @@ $(document).ready(function(){
         }, 2000);
     }
 
+
+    // check these part********************************************************************************************************************************
+
+
+    //hide total buttons 
+    function totalSection() {
+        var mpesaMethod = document.getElementById("mpesaMethod");
+        var receipt = document.getElementById("receipt");
+        var totalPayment = document.getElementById("total-payment");
+
+        totalPayment.style.display = 'none';
+        mpesaMethod.style.display = 'none';
+        receipt.style.display = 'none';
+    }
+
+    //clear cart
     $('#clear-cart').click(function(){
         cart = [];
         saveCart();
         displayCart();
+        totalSection();
+
     });
 
     displayCart();
+    
 });
