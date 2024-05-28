@@ -192,58 +192,107 @@
         </div>
         <!-- Cart Modal -->
         <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="SaveModalModalTitle" aria-hidden="true" style="background: linear-gradient(95deg, rgba(245, 221, 6, 0.9),#0049, #004); width: 100wh; height: 100vh;">
-            <div class="modal-dialog" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 90vh; width: 100%; padding-left: 0; padding-right: 20px;">
-                <div class="modal-content" style="border-radius: 10px; background: linear-gradient(45deg, #004, #0049); height: 90%;">
+            <div class="modal-dialog" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-height: 90vh; width: 100%; padding-left: 0; padding-right: 20px;">
+                <div class="modal-content pb-4 shadow" style="border-radius: 10px; background: #fff; height: 90%;">
                     <div class="card bg-transparent border-0 shadow-none">
                         <div class="card-body p-0 m-0">
                             <div class="border-0 p-2 d-flex justify-content-between">
                                 <button class="btn text-light bg-transparent" data-dismiss="modal"><i class="fas fa-times text-danger rounded-circle"></i></button>
-                                <button id="clear-cart" class="btn text-light bg-transparent"><i class="fas fa-trash"></i> Clear</button>
-                                <h5 class="modal-title" style="font-weight: 900; color: #f5dd06;"><i class="fas fa-cart-plus"></i> Cart</h5>
+                                <button id="clear-cart" class="btn text-dark bg-transparent"><i class="fas fa-trash"></i> Clear</button>
+                                <h5 class="modal-title" style="font-weight: 900; color: #004;"><i class="fas fa-cart-plus"></i> Cart</h5>
                             </div>
                             <div class="cart-container p-4 m-4">
-                                <br><br><br><br>
+                                
                                 <div class="cart text-center">
                                     <span class="cart-wheel"><i class="fas fa-cart-plus fa-3x" style="color: #f5dd06;"></i></span>
                                 </div>
                                 <div class="empty-message text-center" style="color: #f5dd06;">Your Cart is Empty</div>
                             </div>
-                            <ul id="cart" class="list-group" style="position: relative; max-height: 50%; overflow-x: auto; background-color: #004;">
+                            <ul id="cart" class="list-group pl-0 pr-0 pb-4" style="position: relative; max-height: 50%; overflow-x: auto; background-color: transparent;">
                                 <!-- Cart Items -->
                             </ul>
                             <div class="scroll-indicator"></div>
                             <div id="total-payment">
-                                <span class="d-flex justify-content-between pl-4 pr-4" style="color: #f5dd06; font-weight: 900;">Total: <span id="total">Kshs. 0</span></span>
+                                <span class="d-flex justify-content-between pl-4 pr-4" style="color: #004; font-weight: 900;">Total: <span id="total">Kshs. 0</span></span>
                                 <div class="container payment d-flex justify-content-center">
                                     <button class="btn mr-3 p-2 shadow deactive payment-method" data-method="cash"><i class="fas fa-hand-holding-usd"></i><br> Cash</button>
-                                    <button class="btn ml-3 p-2 shadow deactive payment-method" data-method="mpesa"><i class="fas fa-money-bill-alt"></i><br> Mpesa</button>
+                                    <button class="btn ml-3 p-2 shadow deactive payment-method" data-method="mpesa" onclick="mpesaPay()"><i class="fas fa-money-bill-alt"></i><br> Mpesa</button>
                                 </div>
                             </div>
-                            <br>
-                            <div class="process-btn d-flex justify-content-center">
-                                <button id="checkout-btn" class="btn btn-primary">Process <i class="fas fa-angle-double-right"></i></button>
-                            </div>
-                            <div class="card-footer bg-transparent p-3 shadow-none border-0" style="line-height: 15px; position: relative; background: #0049;">
-                                <div class="row pt-4 hidden">
-                                    <div class="form-container">
-                                        <div id="step1">
-                                            <h2 class="shadow text-center"><i class="fas fa-money-bill-alt"></i> M-pesa Payment</h2>
-                                            <form id="formStep1">
-                                                <label for="phone">Phone:</label>
-                                                <input type="text" id="phone" name="phone" required class="form-control">
-                                                <label for="amount">Amount:</label>
-                                                <input type="number" id="amount" name="amount" required class="form-control">
-                                                <button type="button" id="processButton" class="btn ">Process</button>
-                                            </form>
-                                        </div>
-                                        <div id="step2" style="display: none;">
-                                            <h2>Step 2: Receipt</h2>
-                                            <p id="receipt"></p>
-                                            <button id="completeButton">Complete</button>
-                                        </div>
+
+
+
+                            <fieldset class="mt-2 text-center pl-1 pr-1" id="mpesaMethod" style="display: none; background-color: transparent;">
+                                <legend style="font-family: cursive; font-weight: 900; color: #004; width: 100%; background-color: #0049;"><h4>Mpesa Payment</h4></legend>
+                                <div class="p-2 text-left">
+                                    <p>
+                                        <label for="phone">Phone number:</label>
+                                        <input type="tel" class="form-control" id="phone" placeholder="mpesa phone number"> 
+                                    </p>
+                                    <p>
+                                        <label for="amount">Amount:</label>
+                                        <input type="number" class="form-control" id="amount" placeholder="amount to be paid"> 
+                                    </p>
+                                    <p class="d-flex justify-content-between">
+                                        <button id="backOne" class="btn " onclick="startBackPayProcess()">Back</button>
+                                        <button id="nextReceipt" class="btn btn-primary" onClick="payProcess()">Process</button>
+                                    </p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mt-2 text-center pl-1 pr-1" id="receipt" style="display: none;">
+                                <h6>
+                                    <i class="fas fa-check-circle fa-4x text-success p-2" style="animation: fadeIn 2s;"></i><br>
+                                    <span>Successful</span>
+                                </h6>
+                                <div class="p-2 text-left">
+                                    <h6 style="text-align: center; font-family: cursive; font-weight: 900;" >Mugumoini Electronics</h6>
+                                    <p>
+                                        <table class="table table-striped">
+                                            <thead style="font-size: 12px; font-weight: 900; text-transform: uppercase; color: #f5dd06;">
+                                                <td>Product</td>
+                                                <td>Qty</td>
+                                                <td>Amount (Kshs)</td>
+                                            </thead>
+                                            <tbody style="line-height: normal; color: #004; font-size: 10px;padding: 0;">
+                                                <tr class="border-0">
+                                                    <td>Oraimo earphone</td>
+                                                    <td>2</td>
+                                                    <td>1500</td>
+                                                </tr>
+                                                <tr class="border-0">
+                                                    <td>Samsung Charger</td>
+                                                    <td>1</td>
+                                                    <td>900</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Oppo</td>
+                                                    <td>1</td>
+                                                    <td>2800</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" class="text-center font-weight-bold text-uppercase">Total</td>
+                                                    <td style="font-weight: 900;">Kshs. 39000</td>
+                                                </tr>
+
+                                                <tr class="bg-transparent text-dark font-weight-bold text-center">
+                                                    <td colspan="3"> 
+                                                        <p class="d-flex justify-content-between"><span>Served by:</span><span>Odiedo Paul</span></p>
+                                                        Thank you for shopping with us! <br>
+                                                        Find us at: <br>
+                                                        +254759680813 <br>
+                                                        www.border-trade.com/mugumoini
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>  
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn m-2 printrct" onclick="backPayProcess()">Back</button>
+                                        <button class="btn m-2 printrct">Done</button>
+                                        <button class="btn m-2 printrct"><i class="fas fa-print"></i></button>
                                     </div>
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
