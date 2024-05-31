@@ -368,6 +368,66 @@ nav i {
     animation: bounce 2s infinite;
 }
 
+#bodyCards .card-one {
+    animation: fadeInUp 1s ease-in-out; 
+    background:linear-gradient(-145deg,#0021, #0003, rgb(245, 221, 6));
+    font-weight: 900;
+}
+
+#bodyCards .card-one:hover {
+    cursor: pointer;
+    background: linear-gradient(25deg, rgb(245, 221, 6), rgb(245, 221, 6), #0003);
+    font-weight: 900;
+}
+
+#bodyCards .card-two {
+    animation: fadeInUp 1.5s ease-in-out; 
+    background:linear-gradient(-145deg,#0021, #0003, rgb(245, 221, 6));
+}
+#bodyCards .card-three {
+    animation: fadeInUp 2s ease-in-out; 
+    background:linear-gradient(-145deg,#0021, #0003, rgb(245, 221, 6));
+}
+#bodyCards .card-four {
+    animation: fadeInUp 2.5s ease-in-out; 
+    background:linear-gradient(-145deg,#0021, #0003, rgb(245, 221, 6));
+}
+#bodyCards .card-three:hover {
+    cursor: pointer;
+    background: linear-gradient(25deg, rgb(245, 221, 6), rgb(245, 221, 6), #0003);
+    font-weight: 900;
+}
+#bodyCards h5 {
+    color: #004;
+    font-size: 16px;
+    font-weight: 900;
+}
+#bodyCards .card-two ul li {
+    background-color: #0049;
+    color: #fff;
+    margin-bottom: 2px;
+    font-size: 12px;
+}
+#bodyCards .card-two ul li:hover {
+    background-color: #004;
+    color: rgb(245, 221, 6);
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+#indexButtons button {
+    width: 30%;
+    color: #004;
+    background: transparent;
+    border: 1px solid #004;
+    font-weight: 900;
+    font-size: 12px;
+}
+#indexButtons button:hover {
+    transform: scale(1.1);
+    background: rgb(245, 221, 6);
+
+}
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
@@ -398,7 +458,7 @@ nav i {
 
 .empty-message {
     font-size: 18px;
-    color: #616161;
+    color: #004;
     animation: fadeIn 4s ease-in-out;
 }
 

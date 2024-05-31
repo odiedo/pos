@@ -121,57 +121,64 @@
                         </div>
                     </div>
                     <!-- cards  -->
-                    <div class="row pt-2">
-                        <div class="col-md-4 mb-2">
-                            <div class="card border-0" style="animation: fadeInUp 1s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
+                    <div class="row pt-2" id="bodyCards">
+                        <div class="col-md-4 col-xl-4 mb-2">
+                            <div class="card border-0 card-one shadow">
                                 <div class="card-body">
-                                  <h5 class="card-title text-light font-weight-bold">Sales Summary</h5>
-                                  <h6 class="card-subtitle mb-2 text-muted">This Month</h6>
-                                  <p class="card-text h2 font-weight-bold text-light" style="text-shadow: 0 0 10px #f5dd06;">Kshs. 12,345</p>
-                                  <p class="card-text text-success font-weight-bold"><i class="fas fa-arrow-up"></i> 10% increase from last month</p>
+                                  <h5 class="card-title d-flex justify-content-between"><span>Sales Summary</span><i class="fas fa-times text-dark"></i> </h5>
+                                  <h6 class="card-subtitle mb-2 text-muted">Today</h6>
+                                  <h2 class="card-text h2 font-weight-bold text-light" style="text-shadow: 0 0 10px #004;">Kshs. 12,345</h2>
+                                  <p class="card-text"><i class="fas fa-arrow-up"></i> 10% increase from yesterday</p>
                                 </div>
                             </div>                              
                         </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="card border-0 shadow" style="animation: fadeInUp 1.5s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
+                        <div class="col-md-4 col-xl-4 mb-2">
+                            <div class="card border-0 card-two shadow">
                                 <div class="card-body">
-                                  <h5 class="card-title text-light font-weight-bold">Top Products</h5>
+                                  <h5 class="card-title"><span>Top Products</span></h5>
                                   <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Product 1 <span class="badge badge-primary badge-pill">1234</span>
+                                      Huawei Y7 <span class="badge badge-primary badge-pill">8</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Product 2 <span class="badge badge-primary badge-pill">987</span>
+                                      Oraimo earphone <span class="badge badge-primary badge-pill">6</span>
                                     </li>
                                   </ul>
                                 </div>
                             </div>  
                         </div>
                         <div class="col-md-4 mb-2">
-                            <div class="card border-0 shadow" style="animation: fadeInUp 2s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
+                            <div class="card border-0 card-two shadow">
                                 <div class="card-body">
-                                  <h5 class="card-title text-light font-weight-bold">Inventory Status</h5>
-                                  <p class="card-text text-info">Current Stock: 150 items</p>
-                                  <p class="card-text text-danger"><i class="fas fa-exclamation-triangle"></i> 5 items low in stock</p>
-                                </div>
-                            </div>                              
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 mb-2">
-                            <div class="card border-0" style="animation: fadeInUp 2.5s ease-in-out; background:linear-gradient(45deg,#004, #000, #0049)">
-                                <div class="card-body">
-                                  <h5 class="card-title">Recent Transactions</h5>
+                                  <h5 class="card-title"><span>Recent Transactions</span></h5>
                                   <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Sale #1234 <span class="text-success">Kshs. 150.00</span>
+                                      Sale <span class="badge badge-success badge-pill">#0R563</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Refund #1235 <span class="text-danger">-kshs. 30.00</span>
+                                        Refund <span class="badge badge-danger badge-pill">#0R563</span>
                                     </li>
                                   </ul>
                                 </div>
-                            </div>                              
+                            </div>  
+                        </div>
+                        <div class="col-md-4 col-xl-4 mb-2">
+                            <div class="card border-0 card-three shadow">
+                                <div class="card-body">
+                                  <h5 class="card-title">Inventory Status</h5>
+                                  <p class="card-text text-primary font-weight-bold">Current Stock: 150 items</p>
+                                  <p class="card-text text-danger"><i class="fas fa-exclamation-triangle"></i> 5 items low in stock</p>
+                                </div>
+                            </div>              
+                        </div>
+                        <div class="col-md-4">
+                            <div id="indexButtons">
+                                <div class="d-flex justify-content-between pt-2 m-2">
+                                    <button class="btn"><i class="fas fa-plus fa-2x"></i><br>Add product</button>
+                                    <button class="btn"><i class="fas fa-minus fa-2x"></i><br>Refund</button>
+                                    <button class="btn"><i class="fas fa-envelope fa-2x"></i><br>Bulk SMS</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
